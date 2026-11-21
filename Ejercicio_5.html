@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicio 5 - Potencia A^B</title>
+  <style>
+    body {
+        font-family: fantasy;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 30px;
+        color: #c5261b;
+        margin-bottom: 24px;
+    }
+    #resultado {
+        display: none;
+      max-width: 420px;
+      margin: 24px auto;
+      padding: 20px;
+      text-align: center;
+      background-color: #f7f4f7;
+      border: 1px solid #740b72;
+      border-radius: 8px;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+    .fondo-modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(rgb(118, 28, 151), rgb(30, 73, 158), blue, alpha);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .caja-modal {
+        background: rgb(96, 211, 234);
+        padding: 20px;
+        border-radius: 8px;
+        width: 320px;
+        box-shadow: 0 4px 12px rgba(rgb(143, 14, 23), rgb(179, 32, 93), rgb(137, 48, 88), alpha);
+    }
+    .caja-modal input {
+        width: 100%;
+        padding: 8px;
+        margin: 8px 0 14px;
+        box-sizing: border-box;
+    }
+    .caja-modal button {
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejercicio 5: Potencia A^B</h1>
+  
+  <div id="modal" class="fondo-modal">
+    <div class="caja-modal">
+        <p id="instruccion"> Ingrese el valor de la base (A):</p>
+        <input type="number" id="campo-dato" step="any" />
+        <button id="btn-siguiente" type="button">Siguiente</button>
+    </div>
+  </div>
+
+  <div id="resultado"></div>
+
+  <script>
+    let paso = 1; //1 para pedir la base, 2 para pedir el exponente
+    let a = null;
+    let b = null;
+
+    //.getElementById busca un elemento dentro del HTML cuyo ID sea "resultado"
+    const modal = document.getElementById("modal");
+    const instruccion = document.getElementById("instruccion");
+    const campoDato = document.getElementById("campo-dato");
+    const btnSiguiente = document.getElementById("btn-siguiente");
+    const salida = document.getElementById("resultado");
+
+    campoDato.focus();
+
+    btnSiguiente.addEventListener("click", () => {
+        const valorTexto = campoDato.value.trim();
+
+        if (paso === 1) {
+            a = parseFloat(valorTexto);
+            if (isNaN(a)) {
+                alert("Ingrese un número válido para A.");
+                return;
+            }
+
+            paso = 2;
+            instruccion.textContent = "Ingrese el valor del exponente entero (B):";
+            campoDato.value = "";
+            campoDato.step ="1";
+            btnSiguiente.textContent = "Calcular";
+            campoDato.focus();
+            } else if (paso === 2) {
+                b = parseInt(valorTexto, 10);
+                if (isNaN(b)) {
+                    alert("Ingrese un número válido para B.");
+                    return;
+                }
+
+                modal.style.display = "none";
+
+                if (a === 0 && b < 0) {
+                    salida.innerHTML = "<p>No se puede calcular 0 elevado a un exponente negativo.</p>";
+                    salida.style.display = "block"; 
+                    return;
+                }
+
+                 // 2. Validar que ambos datos sean números válidos
+    let exponenteAbsoluto = Math.abs(b);
+      //obtiene el valor absoluto de b
+      let producto = 1; 
+      // Elemento neutro de la multiplicación (si B = 0, el ciclo no corre y queda 1)
+
+       // Ciclo repetitivo para multiplicar A por sí mismo 'exponenteAbsoluto' veces
+      for (let i = 1; i <= exponenteAbsoluto; i++) {
+        producto = producto * a;
+      }
+
+      // 4. Si el exponente original B es negativo, aplicar el recíproco (1 / producto)
+      let resultadoFinal = producto;
+      if (b < 0) {
+        resultadoFinal = 1 / producto;
+      }
+
+      // 5. Mostrar el resultado en el navegador
+      salida.innerHTML = `
+        <p>Base (A): <strong>${a}</strong></p>
+        <p>Exponente (B): <strong>${b}</strong></p>
+        <p>Resultado (${a}<sup>${b}</sup>): <strong>${resultadoFinal}</strong></p>
+      `;
+      salida.style.display = "block";
+        }
+    });
+  </script>
+</body>
+</html>
