@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ejercicio 6 - Fibonacci y Primos</title>
+  <style>
+    body {
+        font-family: fantasy;
+        padding: 20px;
+        background-color: #f9faf8;
+    }
+
+    h1 {
+        text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 30px;
+        color: #50051c;
+        margin-bottom: 24px;
+    }
+
+    h3 {
+        text-align: right;
+        font-family: Gothic, 'Arial Black', sans-serif;
+        font-size: 25px;
+        color: #0d0439;
+        margin-bottom: 24px;
+    }
+
+    #resultado {
+        display: block;
+      max-width: 420px;
+      margin: 24px auto;
+      padding: 20px;
+      text-align: center;
+      background-color: #f7f4f7;
+      border: 2px solid #b72c0a;
+      border-radius: 8px;
+      font-size: 17px;
+      line-height: 1.6;
+      font-family: 'sans-serif';
+    }
+  </style>
+</head>
+<body>
+  <h3>UNEMI</h3>
+  <h1>Ejercicio 6: 10 Primeros Fibonacci y Conteo de Primos</h1>
+
+  <div id="resultado"></div>
+
+  <script>
+    const salida = document.getElementById('resultado');
+    const limiteFibonacci = 10; // Número de términos de Fibonacci a generar
+
+    let fibPrevio = 0; 
+    let fibActual = 1;
+   
+    //variables para construir la serie de Fibonacci
+    let serieFibonacci = []; 
+    let primos = [];
+
+    for (let i = 1; i <= limiteFibonacci; i++) {
+        let numeroFib;
+
+        if (i === 1) {
+            numeroFib = 1; 
+        } else {
+            numeroFib = fibPrevio + fibActual;
+            fibPrevio = fibActual;
+            fibActual = numeroFib;
+        }
+       
+        serieFibonacci.push(numeroFib);
+
+        //para determinar si el número de Fibonacci es primo
+        let tieneDivisorExtra = false;
+
+        if (numeroFib <= 1) {
+            tieneDivisorExtra = true;
+        } else {
+            for (let d = 2; d < numeroFib; d++) {
+                if (numeroFib % d === 0) {
+                    tieneDivisorExtra = true;
+                    break; //si tiene otro divisor, no es primo, se rompe el ciclo
+                }
+            }
+        }
+
+        if (!tieneDivisorExtra) {
+            primos.push(numeroFib);
+        }
+    }
+
+    salida.innerHTML = `
+        <p><strong>Serie de Fibonacci (primeros ${limiteFibonacci} términos):</strong> ${serieFibonacci.join(', ')}</p>
+        <p><strong>Números primos en la serie:</strong> ${primos.join(', ')}</p>
+    `;
+    
+  </script>
+</body>
+</html>
