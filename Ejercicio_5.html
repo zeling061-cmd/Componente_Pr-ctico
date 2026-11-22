@@ -17,6 +17,15 @@
         color: #c5261b;
         margin-bottom: 24px;
     }
+
+     h3 {
+        text-align: right;
+        font-family: Gothic, 'Arial Black', sans-serif;
+        font-size: 25px;
+        color: #0d0439;
+        margin-bottom: 24px;
+    }
+    
     #resultado {
         display: none;
       max-width: 420px;
@@ -58,6 +67,7 @@
   </style>
 </head>
 <body>
+  <h3>UNEMI</h3>
   <h1>Ejercicio 5: Potencia A^B</h1>
   
   <div id="modal" class="fondo-modal">
@@ -82,11 +92,13 @@
     const btnSiguiente = document.getElementById("btn-siguiente");
     const salida = document.getElementById("resultado");
 
+    // Establecer el foco en el campo de entrada al cargar la página 
     campoDato.focus();
 
     btnSiguiente.addEventListener("click", () => {
         const valorTexto = campoDato.value.trim();
 
+              // Validar que el campo no esté vacío
         if (paso === 1) {
             a = parseFloat(valorTexto);
             if (isNaN(a)) {
@@ -96,11 +108,13 @@
 
             paso = 2;
             instruccion.textContent = "Ingrese el valor del exponente entero (B):";
-            campoDato.value = "";
+            // Limpiar el campo de entrada y establecer el foco nuevamente 
+          campoDato.value = "";
             campoDato.step ="1";
             btnSiguiente.textContent = "Calcular";
             campoDato.focus();
             } else if (paso === 2) {
+              // Validar que el exponente sea un número entero
                 b = parseInt(valorTexto, 10);
                 if (isNaN(b)) {
                     alert("Ingrese un número válido para B.");
@@ -110,6 +124,7 @@
                 modal.style.display = "none";
 
                 if (a === 0 && b < 0) {
+                // Validación para evitar 0 elevado a un exponente negativo
                     salida.innerHTML = "<p>No se puede calcular 0 elevado a un exponente negativo.</p>";
                     salida.style.display = "block"; 
                     return;
