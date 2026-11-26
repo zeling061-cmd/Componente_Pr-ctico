@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Promedio de Notas</title>
+</head>
+<body>
+    <script>
+// Algoritmo para las estadísticas de las edades
+let N = 0;
+let contador = 1;
+let edad = 0;
+let nino = 0;
+let adolescentes = 0;
+let adultos = 0;
+let adultosM = 0;
+// Solicitar al usuario el número de edades a calcular
+N = Number(prompt("Ingrese el número de edades a calcular"));
+if (N < 1 || N > 120 || !Number.isInteger(N)) {// Validar que el número de edades sea válido
+    document.write("El rango de edad no es válido");
+} else {
+    while (contador <= N) { // Bucle para ingresar las edades
+        edad = Number(prompt("Ingrese la edad")); 
+
+        if (edad >= 60) { // Verificar si la edad es de adulto mayor (mayor o igual a 60)
+            adultosM = adultosM + 1;
+        } else if (edad >= 18) { // Verificar si la edad es de adulto (mayor o igual a 18)
+            adultos = adultos + 1;
+        } else if (edad >= 12) { // Verificar si la edad es de adolescente (mayor o igual a 12)
+            adolescentes = adolescentes + 1;
+        } else { // Verificar si la edad es de niño (menor a 12)
+            nino = nino + 1;
+        }
+
+        contador = contador + 1; // Incrementar el contador para la siguiente edad a calcular
+    }
+ // Mostrar resultados en la página
+    document.write("Niños: " + nino + "<br>");
+    document.write("Adolescentes: " + adolescentes + "<br>");
+    document.write("Adultos: " + adultos + "<br>");
+    document.write("Adultos mayores: " + adultosM);
+}
+</script>
+</body>
