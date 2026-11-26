@@ -8,6 +8,8 @@
     <h2>Resultados del Promedio de Notas</h2>
 
     <script>
+         //-------Algoritmo para el promedio de notas-------
+        //Solicitar al usuario el número de nots a calcular
         let N = Number(prompt("Ingrese el número de notas a calcular"));
         let contador = 1;
         let nota = 0;
@@ -21,32 +23,35 @@
 
         if (N > 0) {
             while (contador <= N) { //Bucle para ingresar las notas
+                //Solicitar al usuario la nota
                 nota = Number(prompt("Ingrese la nota" + contador));
                 contador = contador + 1;
 
-                if (nota > nota_alta) {
+                if (nota > nota_alta) { //Actualizar nota_alta si la nota ingresada es mayor
                     nota_alta = nota;
                 }
-                if (nota < nota_baja) {
+                if (nota < nota_baja) { //Actualizar nota_baja si la nota ingresada es menor
                     nota_baja = nota;
                 }
 
-                sum_general = sum_general + nota;
+                sum_general = sum_general + nota; //Acumular la suma de todas las notas
 
-                if (nota >= 14) {
+                if (nota >= 14) { //Verificar si la nota es aprobada (mayor o igual a 14)
                     sum_aprobados = sum_aprobados + nota;
                     contador_aprobados = contador_aprobados + 1;
-                } else {
+                } else { //Verificar si la nota es reprobada (menor a 14)
                     sum_reprobados = sum_reprobados + nota;
                     contador_reprobados = contador_reprobados + 1;
                 }
             }
 
+              //Calcular promedios
             let prom_general = sum_general / N;
             let prom_aprobados = contador_aprobados > 0 ? sum_aprobados / contador_aprobados : 0;
             let prom_reprobados = contador_reprobados > 0 ? sum_reprobados / contador_reprobados : 0;
             let porcentajes_aprobados = (contador_aprobados * 100) / N;
 
+            //Mostrar resultados en la pagina
             document.write("Promedio General: " + prom_general.toFixed(2) + "<br>");
             document.write("Promedio Aprobados: " + prom_aprobados.toFixed(2) + "<br>");
             document.write("Promedio Reprobados: " + prom_reprobados.toFixed(2) + "<br>");
