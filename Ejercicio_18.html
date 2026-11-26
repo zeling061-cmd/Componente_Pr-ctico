@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Promedio de Notas</title>
+</head>
+<body>
+    <script>
+  let n = Number(prompt("¿Cuántas temperaturas vas a ingresar?"));
+
+  let congelante = 0;
+  let frio = 0;
+  let templado = 0;
+  let caluroso = 0;
+  let peligroso = 0;
+  let extremas = 0;
+  let sumaTotal = 0;
+
+  let i = 1; 
+  while (i <= n) { // Bucle para ingresar las temperaturas
+    let temp = Number(prompt("Ingresa la temperatura " + i + " (en °C):"));
+
+    sumaTotal = sumaTotal + temp;
+
+    // Condiciones anidadas múltiples para clasificar
+    if (temp < 0) { // Verificar si la temperatura es congelante (menor a 0)
+      congelante = congelante + 1;
+    } else { 
+      if (temp <= 15) { // Verificar si la temperatura es fría (entre 0 y 15)
+        frio = frio + 1;
+      } else {
+        if (temp <= 30) { // Verificar si la temperatura es templada (entre 16 y 30)
+          templado = templado + 1;
+        } else {
+          if (temp <= 40) { // Verificar si la temperatura es calurosa (entre 31 y 40)
+            caluroso = caluroso + 1;
+          } else {
+            peligroso = peligroso + 1; // Verificar si la temperatura es peligrosa (mayor a 40)
+          }
+        }
+      }
+    }
+
+    // Condición con O (||) para temperaturas extremas (< 0 O > 40)
+    if ((temp < 0) || (temp > 40)) { 
+      extremas = extremas + 1;
+    }
+
+    i = i + 1;
+  }
+
+  // Calcular promedio
+  let promedio = sumaTotal / n;
+
+  // Condición compuesta para saber si está fuera del rango templado (16 a 30)
+  let estado = "Dentro del rango templado";
+  if ((promedio < 16) || (promedio > 30)) {
+    estado = "Fuera del rango templado";
+  }
+
+  // Mostrar resultados en la página
+  document.write(
+    "Congelante:" + congelante + "<br>" +
+    "Frío:" + frio + "<br>" +
+    "Templado:" + templado + "<br>" +
+    "Caluroso:" + caluroso + "<br>" +
+    "Peligroso:" + peligroso + "<br>"
+  );
+  document.write("Temperaturas extremas: " + extremas + "<br>");
+  document.write("Promedio = " + promedio + "<br>");
+  document.write("Estado: " + estado);
+</script>
+</body>
