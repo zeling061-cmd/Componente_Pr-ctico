@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 4 - Factorial de un Número</title>
+</head>
+<body>
+    <h2>Ejercicio 4: Cálculo de Factorial (N!)</h2>
+    <div id="resultado"></div>
+
+    <script>
+//Lectura y validación: el factorial aplica para enteros >= 0
+        let n;
+        do {
+            n = parseInt(prompt("Ingrese un número entero no negativo N:"));
+        } while (isNaN(n) || n < 0);
+
+//Acumulador multiplicativo inicializado en 1
+        let factorial = 1;
+        let factores = [];
+//Ciclo repetitivo (for) desde 1 hasta N
+        for (let i = 1; i <= n; i++) {
+            factorial *= i;
+            factores.push(i);
+        }
+
+        //Mostrar resultado en pantalla y consola
+        let expresion = (n === 0) ? "1 (por definición)" : `${factores.join(" * ")} = ${factorial}`;
+        let salidaHTML = `<p><strong>Factorial de ${n} (${n}!):</strong> ${expresion}</p>`;
+
+        console.log(`Factorial de ${n} => ${expresion}`);
+        document.getElementById("resultado").innerHTML = salidaHTML;
+    </script>
+</body>
+</html>
