@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 1 - Número Primo</title>
+</head>
+<body>
+    <h2>Ejercicio 1: Verificación de Número Primo</h2>
+    <div id="resultado"></div>
+
+    <script>
+
+ //Lectura y validación de entrada: entero positivo N
+        let n;
+        do {
+            n = parseInt(prompt("Ingrese un número entero positivo N:"));
+        } while (isNaN(n) || n <= 0);
+
+ //Bandera booleana para asumir inicialmente que es primo
+        let esPrimo = true;
+
+        // El 1 y los números menores no son primos
+        if (n <= 1) {
+            esPrimo = false;
+        } else {
+
+ //Ciclo repetitivo (for) desde 2 hasta la raíz cuadrada de N
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    esPrimo = false;
+                    break; // Se detiene el ciclo al encontrar un divisor
+                }
+            }
+        }
+
+
+
+
+
+//Mostrar resultado en consola y en pantalla
+        let mensaje = esPrimo 
+            ? `El número ${n} ES PRIMO (solo es divisible para 1 y ${n}).` 
+            : `El número ${n} NO ES PRIMO.`;
+
+        console.log(mensaje);
+        document.getElementById("resultado").innerHTML = `<p><strong>Resultado:</strong> ${mensaje}</p>`;
+    </script>
+</body>
+</html>
