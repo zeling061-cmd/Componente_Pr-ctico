@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 3 - Suma de Pares y Producto de Impares</title>
+</head>
+<body>
+    <h2>Ejercicio 3: Suma de Pares y Producto de Impares</h2>
+    <div id="resultado"></div>
+
+    <script>
+//Lectura y validación de la cantidad N
+        let n;
+        do {
+            n = parseInt(prompt("Ingrese la cantidad N de números pares e impares:"));
+        } while (isNaN(n) || n <= 0);
+
+//Acumuladores y listas para mostrar el detalle
+        let sumaPares = 0;
+        let productoImpares = 1;
+        let listaPares = [];
+        let listaImpares = [];
+
+//Ciclo repetitivo (for) para generar los N pares e impares
+        for (let i = 1; i <= n; i++) {
+            let parActual = 2 * i;
+            let imparActual = 2 * i - 1;
+
+            sumaPares += parActual;
+            productoImpares *= imparActual;
+
+            listaPares.push(parActual);
+            listaImpares.push(imparActual);
+        }
+
+//Mostrar resultado en pantalla y consola
+        let salidaHTML = `
+            <p><strong>Cantidad N:</strong> ${n}</p>
+            <p><strong>Suma de pares:</strong> ${listaPares.join(" + ")} = <strong>${sumaPares}</strong></p>
+            <p><strong>Producto de impares:</strong> ${listaImpares.join(" * ")} = <strong>${productoImpares}</strong></p>
+        `;
+
+        console.log(`Suma de pares: ${sumaPares}`);
+        console.log(`Producto de impares: ${productoImpares}`);
+        document.getElementById("resultado").innerHTML = salidaHTML;
+    </script>
+</body>
+</html>
