@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 11 - Máximo y Mínimo</title>
+</head>
+<body>
+<h2>Ejercicio 11: Valor Máximo y Mínimo Ingresados</h2>
+<div id="resultado"></div>
+<script>
+// 1. Variables de control y arreglos para almacenar los valores
+let entrada;
+let valores = [];
+let maximo = null;
+let minimo = null;
+// 2. Ciclo repetitivo controlado por centinela ("s" para salir)
+while (true) {
+entrada = prompt('Ingrese un valor numérico (o escriba "s" para salir):');
+// Si el usuario cancela o ingresa "s" / "S", finaliza el ciclo
+if (entrada === null || entrada.trim().toLowerCase() === "s") {
+break;
+}
+let numero = parseFloat(entrada);
+// Validar que sea un número válido y distinto a los anteriores
+if (isNaN(numero)) {
+alert("Entrada no válida. Ingrese un número o 's' para salir.");
+continue;
+}
+if (valores.includes(numero)) {
+alert("El valor ya fue ingresado. Por favor ingrese un valor distinto.");
+continue;
+}
+valores.push(numero);
+// 3. Actualizar máximo y mínimo
+if (maximo === null || numero > maximo) {
+maximo = numero;
+}
+if (minimo === null || numero < minimo) {
+minimo = numero;
+}
+}
+// 4. Mostrar resultado en pantalla y consola
+let salidaHTML;
+if (valores.length === 0) {
+salidaHTML = `<p><strong>Resultado:</strong> No se ingresaron valores
+numéricos antes de salir.</p>`;
+} else {
+salidaHTML = ` <p><strong>Valores ingresados:</strong> ${valores.join(", ")}</p>
+<p><strong>Valor Máximo:</strong> ${maximo}</p>
+<p><strong>Valor Mínimo:</strong> ${minimo}</p>
+`;
+}
+console.log(salidaHTML.replace(/<[^>]*>/g, " ").trim());
+document.getElementById("resultado").innerHTML = salidaHTML;
+</script>
+</body>
+</html>
