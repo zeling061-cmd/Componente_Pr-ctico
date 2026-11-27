@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 10 - Sumas Sucesivas</title>
+</head>
+<body>
+<h2>Ejercicio 10: Multiplicación por Sumas Sucesivas (A * B)</h2>
+<div id="resultado"></div>
+<script>
+// 1. Lectura y validación de los valores enteros A y B (B >= 0)
+let a;
+do {
+a = parseInt(prompt("Ingrese el valor entero A:"));
+} while (isNaN(a));
+let b;
+do {
+b = parseInt(prompt("Ingrese el valor entero no negativo B:"));
+} while (isNaN(b) || b < 0);
+// 2. Acumulador y lista de sumandos
+let producto = 0;
+let sumandos = [];
+// 3. Ciclo repetitivo (for) para sumar A, B veces
+for (let i = 1; i <= b; i++) {
+producto += a;
+sumandos.push(a);
+}
+// 4. Mostrar resultado en pantalla y consola
+let expresionSuma = (b === 0) ? "0" : sumandos.join(" + ");
+let salidaHTML = ` <p><strong>PRODUCTO P = ${a} * ${b}</strong></p>
+<p><strong>SUMA SUCESIVA P =</strong> ${expresionSuma}</p>
+<p><strong>PRODUCTO =</strong> ${producto}; <strong>SUMA:</strong>${producto}</p>
+`;
+console.log(`PRODUCTO P = ${a} * ${b}; SUMA SUCESIVA P = ${expresionSuma};
+PRODUCTO = ${producto}; SUMA: ${producto}`);
+document.getElementById("resultado").innerHTML = salidaHTML;
+</script>
+</body>
+</html>
