@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 2 - Serie Fibonacci (100 términos)</title>
+</head>
+<body>
+    <h2>Ejercicio 2: Primeros 100 Números de Fibonacci</h2>
+    <ol id="lista-fibonacci"></ol>
+
+    <script>
+//Uso de BigInt para evitar pérdida de precisión en números grandes
+        let a1 = 1n;
+        let a2 = 1n;
+        let siguiente;
+        const totalTerminos = 100;
+        let htmlSalida = "";
+
+//Ciclo repetitivo (for) desde 1 hasta 100
+        for (let i = 1; i <= totalTerminos; i++) {
+            if (i === 1 || i === 2) {
+                htmlSalida += `<li>Término ${i}: 1</li>`;
+                console.log(`Término ${i}: 1`);
+            } else {
+                siguiente = a1 + a2;
+                htmlSalida += `<li>Término ${i}: ${siguiente.toString()}</li>`;
+                console.log(`Término ${i}: ${siguiente.toString()}`);
+
+                
+             a1 = a2;
+                a2 = siguiente;
+            }
+        }
+
+//Mostrar lista completa en el navegador
+        document.getElementById("lista-fibonacci").innerHTML = htmlSalida;
+    </script>
+</body>
+</html>
