@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 8 - Primeros 10 Primos y Rangos</title>
+</head>
+<body>
+<h2>Ejercicio 8: Primeros 10 Números Primos y Conteo por Rangos</h2>
+<div id="resultado"></div>
+<script>
+// 1. Inicialización de arreglos y contadores
+let primos = [];
+let rango1a10 = [];
+let rango15a25 = [];
+let numeroActual = 2;
+// 2. Ciclo repetitivo (while) hasta recolectar 10 números primos
+while (primos.length < 10) {
+let esPrimo = true;
+// Verificación de primalidad hasta la raíz cuadrada
+for (let i = 2; i <= Math.sqrt(numeroActual); i++) {
+if (numeroActual % i === 0) {
+esPrimo = false;
+break;
+}
+}
+// Si es primo, se guarda y se evalúa si pertenece a los rangos
+if (esPrimo) {
+primos.push(numeroActual);
+if (numeroActual >= 1 && numeroActual <= 10) {
+rango1a10.push(numeroActual);
+}
+if (numeroActual >= 15 && numeroActual <= 25) {
+rango15a25.push(numeroActual);
+}
+}
+numeroActual++;
+}
+// 3. Mostrar resultados en pantalla y consola
+let salidaHTML = ` <p><strong>10 primeros primos:</strong> ${primos.join(", ")}</p>
+<p><strong>Primos entre [1 - 10]:</strong> ${rango1a10.join(", ")} =>
+<strong>cantidad ${rango1a10.length}</strong></p>
+<p><strong>Primos entre [15 - 25]:</strong> ${rango15a25.join(", ")} =>
+<strong>cantidad ${rango15a25.length}</strong></p>
+`;
+console.log("10 primeros primos:", primos.join(", "));
+console.log(`Contar primos entre [1 - 10]: ${rango1a10.join(", ")} => cantidad
+${rango1a10.length}`);
+console.log(`Contar primos entre [15 - 25]: ${rango15a25.join(", ")} => cantidad
+${rango15a25.length}`);
+document.getElementById("resultado").innerHTML = salidaHTML;
+</script>
+</body>
+</html>
