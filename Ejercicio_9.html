@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Ejercicio 9 - Sueldo y Comisiones</title>
+</head>
+<body>
+<h2>Ejercicio 9: Cálculo de Comisiones y Sueldo Total</h2>
+<div id="resultado"></div>
+<script>
+// 1. Lectura y validación de datos del vendedor
+let nombre;
+do {
+nombre = prompt("Ingrese el nombre del vendedor:");
+} while (!nombre || nombre.trim() === "");
+let sueldoBasico;
+do {
+sueldoBasico = parseFloat(prompt("Ingrese el sueldo básico:"));
+} while (isNaN(sueldoBasico) || sueldoBasico < 0);
+// 2. Ciclo repetitivo (for) para leer las 3 ventas y acumularlas
+let totalVentas = 0;
+for (let i = 1; i <= 3; i++) {
+let venta;
+do {
+venta = parseFloat(prompt(`Ingrese el valor de la venta ${i}:`));
+} while (isNaN(venta) || venta < 0);
+totalVentas += venta;
+}
+// 3. Cálculo de comisión (10%) y sueldo total
+let comision = totalVentas * 0.10;
+let sueldoTotal = sueldoBasico + comision;
+// 4. Mostrar resultado en consola y en pantalla
+let salidaHTML = ` <p><strong>Vendedor:</strong> ${nombre.trim()}</p>
+<p><strong>Sueldo básico:</strong> $${sueldoBasico.toFixed(2)}</p>
+<p><strong>Total de ventas:</strong> $${totalVentas.toFixed(2)}</p>
+<p><strong>Total de comisiones (10%):</strong> $${comision.toFixed(2)}</p><p><strong>Sueldo total a recibir:</strong> $${sueldoTotal.toFixed(2)}</p>
+`;
+console.log(`Vendedor: ${nombre.trim()} | Comisiones: $${comision.toFixed(2)} |
+Sueldo Total: $${sueldoTotal.toFixed(2)}`);
+document.getElementById("resultado").innerHTML = salidaHTML;
+</script>
+</body>
+</html>
