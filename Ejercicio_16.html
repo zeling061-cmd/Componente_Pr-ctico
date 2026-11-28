@@ -2,69 +2,47 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Promedio de Notas</title>
+    <title>Control de Edades Estadísticas</title>
 </head>
 <body>
-    <h2>Resultados del Promedio de Notas</h2>
-
     <script>
-         //-------Algoritmo para el promedio de notas-------
-        //Solicitar al usuario el número de nots a calcular
-        let N = Number(prompt("Ingrese el número de notas a calcular"));
-        let contador = 1;
-        let nota = 0;
-        let nota_alta = -Infinity;
-        let nota_baja = Infinity;
-        let sum_general = 0;
-        let sum_aprobados = 0;
-        let sum_reprobados = 0;
-        let contador_aprobados = 0;
-        let contador_reprobados = 0;
+// Algoritmo para las estadísticas de las edades
+let N = 0;
+let contador = 1;
+let edad = 0;
+let nino = 0;
+let adolescentes = 0;
+let adultos = 0;
+let adultosM = 0;
+// Solicitar al usuario el número de edades a calcular
+N = Number(prompt("Ingrese el número de edades a calcular"));
+if (N < 1 || N > 120 || !Number.isInteger(N)) {// Validar que el número de edades sea válido
+    document.write("El rango de edad no es válido");
+} else {
+    while (contador <= N) { // Bucle para ingresar las edades
+        edad = Number(prompt("Ingrese la edad")); 
 
-        if (N > 0) {
-            while (contador <= N) { //Bucle para ingresar las notas
-                //Solicitar al usuario la nota
-                nota = Number(prompt("Ingrese la nota" + contador));
-                contador = contador + 1;
+        if (edad >= 60) { // Verificar si la edad es de adulto mayor (mayor o igual a 60)
+            adultosM = adultosM + 1;
+        } else if (edad >= 18) { // Verificar si la edad es de adulto (mayor o igual a 18)
+            adultos = adultos + 1;
+        } else if (edad >= 12) { // Verificar si la edad es de adolescente (mayor o igual a 12)
+            adolescentes = adolescentes + 1;
+        } else { // Verificar si la edad es de niño (menor a 12)
+            nino = nino + 1;
+        }
 
-                if (nota > nota_alta) { //Actualizar nota_alta si la nota ingresada es mayor
-                    nota_alta = nota;
-                }
-                if (nota < nota_baja) { //Actualizar nota_baja si la nota ingresada es menor
-                    nota_baja = nota;
-                }
-
-                sum_general = sum_general + nota; //Acumular la suma de todas las notas
-
-                if (nota >= 14) { //Verificar si la nota es aprobada (mayor o igual a 14)
-                    sum_aprobados = sum_aprobados + nota;
-                    contador_aprobados = contador_aprobados + 1;
-                } else { //Verificar si la nota es reprobada (menor a 14)
-                    sum_reprobados = sum_reprobados + nota;
-                    contador_reprobados = contador_reprobados + 1;
-                }
-            }
-
-              //Calcular promedios
-            let prom_general = sum_general / N;
-            let prom_aprobados = contador_aprobados > 0 ? sum_aprobados / contador_aprobados : 0;
-            let prom_reprobados = contador_reprobados > 0 ? sum_reprobados / contador_reprobados : 0;
-            let porcentajes_aprobados = (contador_aprobados * 100) / N;
-
-            //Mostrar resultados en la pagina
-            document.write("Promedio General: " + prom_general.toFixed(2) + "<br>");
-            document.write("Promedio Aprobados: " + prom_aprobados.toFixed(2) + "<br>");
-            document.write("Promedio Reprobados: " + prom_reprobados.toFixed(2) + "<br>");
-            document.write("Nota Alta: " + nota_alta + "<br>");
-            document.write("Nota Baja: " + nota_baja + "<br>");
-            document.write("Porcentaje de Aprobados: " + porcentajes_aprobados.toFixed(2) + "%<br>");
-
-            if (porcentajes_aprobados > 70) {
-                document.write("<strong>Resultado: Excelente Rendimiento</strong>");
-            } else {
-                document.write("<strong>Resultado: Debe Mejorar</strong>");
-            }
-        } else {
+        contador = contador + 1; // Incrementar el contador para la siguiente edad a calcular
+    }
+ // Mostrar resultados en la página
+    document.write("Niños: " + nino + "<br>");
+    document.write("Adolescentes: " + adolescentes + "<br>");
+    document.write("Adultos: " + adultos + "<br>");
+    document.write("Adultos mayores: " + adultosM);
+}
+</script>
+</body>
+</html>
             document.write("Debe ingresar un número de notas mayor a 0.");
         }
     </script>
