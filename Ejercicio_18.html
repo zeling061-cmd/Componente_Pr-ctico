@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Análisis de Números</title>
+</head>
+<body>
+    <script>
+  let n = Number(prompt("¿Cuántos números vas a ingresar?")); // Solicitar al usuario la cantidad de números a ingresar
+
+  let positivosPares = 0;
+  let negativosX3 = 0;
+  let imparesX5 = 0;
+  let especiales = "";
+  let contadorCondiciones = 0;
+
+  let i = 1;
+  while (i <= n) {
+    let num = Number(prompt("Ingresa el número " + i + " (distinto de 0):"));
+
+    // Validar que sea distinto de 0
+    while (num === 0) {
+      num = Number(prompt("No puede ser 0. Ingresa otra vez el número " + i + ":"));
+    }
+
+    contadorCondiciones = 0;
+
+    
+    if ((num > 0) && (num % 2 === 0)) { // Verificar si el número es positivo y par
+      positivosPares = positivosPares + num;
+      contadorCondiciones = contadorCondiciones + 1;
+    }
+
+    
+    if ((num < 0) && (num % 3 === 0)) { // Verificar si el número es negativo y múltiplo de 3
+      negativosX3 = negativosX3 + num;
+      contadorCondiciones = contadorCondiciones + 1;
+    }
+
+    
+    if ((num % 2 !== 0) && (num % 5 === 0)) {// Verificar si el número es impar y múltiplo de 5
+      imparesX5 = imparesX5 + 1;
+      contadorCondiciones = contadorCondiciones + 1;
+    }
+
+   
+    if (contadorCondiciones > 1) { // Verificar si cumple más de una condición
+      especiales = especiales + num + " ";
+    }
+
+    i = i + 1; // Incrementar el contador para la siguiente iteración
+  }
+
+  // Mostrar resultados en la página
+  document.write("Positivos Pares: " + positivosPares + "<br>");
+  document.write("Negativos x3: " + negativosX3 + "<br>");
+  document.write("Impares x5: " + imparesX5 + "<br>");
+  document.write("Especiales: " + especiales);
+</script>
+</body>
+</html>
