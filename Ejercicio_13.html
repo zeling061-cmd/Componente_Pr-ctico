@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 13</title>
+</head>
+<body>
+
+    <h2>Conversion de Calificaciones</h2>
+
+    <!-- Ingreso de la nota -->
+    <label>Ingrese una nota del 1 al 20:</label>
+    <input type="number" id="nota">
+
+    <br><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <p id="resultado"></p>
+
+<script>
+
+// Algoritmo para convertir calificaciones numericas
+// Definir las variables
+function calcular() {
+
+    let nota = 0, resultado = "";
+
+    // Ingreso de la calificacion
+    nota = Number(document.getElementById("nota").value);
+
+    // Validar la nota
+    if (document.getElementById("nota").value == "" ||
+        !Number.isInteger(nota) || nota < 1 || nota > 20)
+    {
+        resultado = "Ingrese una nota valida del 1 al 20.";
+    }
+    else
+    {
+        // Evaluar la calificacion
+        if (nota >= 19)
+        {
+            resultado = "A - SOBRESALIENTE";
+        }
+        else if (nota >= 16)
+        {
+            resultado = "B - MUY BUENO";
+        }
+        else if (nota >= 13)
+        {
+            resultado = "C - BUENO";
+        }
+        else if (nota >= 10)
+        {
+            resultado = "D - REGULAR";
+        }
+        else
+        {
+            resultado = "E - DEFICIENTE";
+        }
+    }
+
+    // Mostrar el resultado
+    document.getElementById("resultado").innerHTML = resultado;
+
+}
+
+</script>
+
+</body>
+</html>
