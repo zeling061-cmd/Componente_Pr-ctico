@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 14 - Numero Perfecto</title>
+</head>
+<body>
+
+    <h2>Determinar Numero Perfecto</h2>
+
+    <!-- Ingreso del numero -->
+    <label>Ingrese un numero entero:</label>
+    <input type="number" id="numero">
+
+    <br><br>
+
+    <button onclick="calcular()">Comprobar</button>
+
+    <p id="resultado"></p>
+
+<script>
+
+// Algoritmo para determinar si un numero es perfecto
+// Definir las variables
+function calcular() {
+
+    let numero = 0, contador = 1, suma = 0;
+
+    // Ingreso del numero
+    numero = parseInt(document.getElementById("numero").value);
+
+    // Validar el numero
+    if (document.getElementById("numero").value == "" ||
+        !Number.isInteger(numero) || numero <= 0)
+    {
+        document.getElementById("resultado").innerHTML =
+        "Ingrese un numero entero positivo.";
+        return;
+    }
+
+    // Buscar los divisores del numero
+    while (contador < numero)
+    {
+        // Comprobar si el numero es divisible
+        if (numero % contador == 0)
+        {
+            suma = suma + contador;
+        }
+
+        // Incrementar el contador
+        contador++;
+    }
+
+    // Comprobar si es un numero perfecto
+    if (suma == numero)
+    {
+        document.getElementById("resultado").innerHTML =
+        "El numero " + numero + " es perfecto.";
+    }
+    else
+    {
+        document.getElementById("resultado").innerHTML =
+        "El numero " + numero + " no es perfecto.";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
