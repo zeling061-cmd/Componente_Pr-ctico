@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 12</title>
+</head>
+<body>
+
+    <h2>Producto y Potencia</h2>
+
+    <!-- Ingreso de los numeros -->
+    <label>Ingrese el primer numero A:</label>
+    <input type="number" id="numA">
+
+    <br><br>
+
+    <label>Ingrese el segundo numero B:</label>
+    <input type="number" id="numB">
+
+    <br><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <p id="resultado"></p>
+
+<script>
+
+// Algoritmo para calcular producto y potencia
+// Definir las variables
+
+function calcular() {
+
+    let A = 0, B = 0, producto = 0, potencia = 1, contador = 1;
+
+    // Ingreso de los numeros
+    A = parseInt(document.getElementById("numA").value);
+    B = parseInt(document.getElementById("numB").value);
+
+    // Verificar los datos ingresados
+    if (isNaN(A) || isNaN(B) || B < 0) {
+        document.getElementById("resultado").innerHTML =
+        "Ingrese numeros enteros y B mayor o igual a cero.";
+        return;
+    }
+
+    // Calcular el producto mediante sumas sucesivas
+    while (contador <= B)
+    {
+        producto = producto + A;
+        contador++;
+    }
+
+    // Reiniciar el contador
+    contador = 1;
+
+    // Calcular la potencia mediante multiplicaciones sucesivas
+    while (contador <= B)
+    {
+        potencia = potencia * A;
+        contador++;
+    }
+
+    // Mostrar los resultados
+    document.getElementById("resultado").innerHTML =
+    "El producto es: " + producto +
+    "<br>La potencia es: " + potencia;
+
+}
+
+</script>
+
+</body>
+</html>
