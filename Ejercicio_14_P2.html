@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ejercicio 14 - Cuatro Numeros Perfectos</title>
+</head>
+<body>
+
+    <h2>Los Cuatro Primeros Numeros Perfectos</h2>
+
+    <button onclick="calcular()">Buscar Numeros Perfectos</button>
+
+    <p id="resultado"></p>
+
+<script>
+
+// Algoritmo para encontrar los cuatro primeros numeros perfectos
+// Definir las variables
+function calcular() {
+
+    let numero = 2, contadorPerfectos = 0;
+    let divisor = 1, suma = 0, resultado = "";
+
+    // Buscar hasta encontrar cuatro numeros perfectos
+    while (contadorPerfectos < 4)
+    {
+        // Reiniciar la suma y el divisor
+        suma = 0;
+        divisor = 1;
+
+        // Buscar los divisores del numero
+        while (divisor < numero)
+        {
+            if (numero % divisor == 0)
+            {
+                suma = suma + divisor;
+            }
+
+            divisor++;
+        }
+
+        // Comprobar si el numero es perfecto
+        if (suma == numero)
+        {
+            resultado = resultado + numero + "<br>";
+            contadorPerfectos++;
+        }
+
+        // Probar el siguiente numero
+        numero++;
+    }
+
+    // Mostrar los cuatro numeros perfectos
+    document.getElementById("resultado").innerHTML =
+    resultado;
+
+}
+
+</script>
+
+</body>
+</html>
